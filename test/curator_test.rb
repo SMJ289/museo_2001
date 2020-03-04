@@ -22,6 +22,23 @@ class CuratorTest < Minitest::Test
          artist_id: "2",
          year: "1941"
     })
+
+    @artist_1 = Artist.new({
+        id: "1",
+        name: "Henri Cartier-Bresson",
+        born: "1908",
+        died: "2004",
+        country: "France"
+    })
+
+    @artist_2 = Artist.new({
+        id: "2",
+        name: "Ansel Adams",
+        born: "1902",
+        died: "1984",
+        country: "United States"
+    })
+
   end
 
   def test_it_exists
@@ -30,12 +47,21 @@ class CuratorTest < Minitest::Test
 
   def test_it_has_attributes
     assert_equal [], @curator.photographs
+    assert_equal [], @curator.artists
   end
 
   def test_it_can_add_photos
     @curator.add_photograph(@photo_1)
     assert_equal [@photo_1], @curator.photographs
+    @curator.add_photograph(@photo_2)
+    assert_equal [@photo_1, @photo_2], @curator.photographs
   end
+
+  def test_it_can_add_artists
+
+  end
+
+
 end
 
 
@@ -43,13 +69,7 @@ end
 
 
 
-# pry(main)> curator.add_photograph(photo_1)
-#
-# pry(main)> curator.add_photograph(photo_2)
-#
-# pry(main)> curator.photographs
-# # => [#<Photograph:0x00007fb3d8ea1cd8...>, #<Photograph:0x00007fb3d8e0bfa8...>]
-#
+
 # pry(main)> curator.artists
 # # => []
 #
