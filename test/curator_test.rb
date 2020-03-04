@@ -8,6 +8,20 @@ class CuratorTest < Minitest::Test
 
   def setup
     @curator = Curator.new
+
+    @photo_1 = Photograph.new({
+         id: "1",
+         name: "Rue Mouffetard, Paris (Boy with Bottles)",
+         artist_id: "1",
+         year: "1954"
+    })
+
+    @photo_2 = Photograph.new({
+         id: "2",
+         name: "Moonrise, Hernandez",
+         artist_id: "2",
+         year: "1941"
+    })
   end
 
   def test_it_exists
@@ -17,29 +31,18 @@ class CuratorTest < Minitest::Test
   def test_it_has_attributes
     assert_equal [], @curator.photographs
   end
+
+  def test_it_can_add_photos
+    @curator.add_photograph(@photo_1)
+    assert_equal [@photo_1], @curator.photographs
+  end
 end
 
 
 
-# pry(main)> curator.photographs
-# # => []
-#
-# pry(main)> photo_1 = Photograph.new({
-#      id: "1",
-#      name: "Rue Mouffetard, Paris (Boy with Bottles)",
-#      artist_id: "1",
-#      year: "1954"
-# })
-# # => #<Photograph:0x00007fb3d8ea1cd8...>
-#
-# pry(main)> photo_2 = Photograph.new({
-#      id: "2",
-#      name: "Moonrise, Hernandez",
-#      artist_id: "2",
-#      year: "1941"
-# })
-# # => #<Photograph:0x00007fb3d8e0bfa8...>
-#
+
+
+
 # pry(main)> curator.add_photograph(photo_1)
 #
 # pry(main)> curator.add_photograph(photo_2)
