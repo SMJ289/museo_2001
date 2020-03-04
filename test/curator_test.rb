@@ -23,6 +23,20 @@ class CuratorTest < Minitest::Test
          year: "1941"
     })
 
+    @photo_3 = Photograph.new({
+         id: "3",
+         name: "Identical Twins, Roselle, New Jersey",
+         artist_id: "3",
+         year: "1967"
+    })
+
+    @photo_4 = Photograph.new({
+         id: "4",
+         name: "Monolith, The Face of Half Dome",
+         artist_id: "3",
+         year: "1927"
+    })
+
     @artist_1 = Artist.new({
         id: "1",
         name: "Henri Cartier-Bresson",
@@ -37,6 +51,14 @@ class CuratorTest < Minitest::Test
         born: "1902",
         died: "1984",
         country: "United States"
+    })
+
+    @artist_3 = Artist.new({
+         id: "3",
+         name: "Diane Arbus",
+         born: "1923",
+         died: "1971",
+         country: "United States"
     })
 
   end
@@ -72,7 +94,49 @@ class CuratorTest < Minitest::Test
     assert_equal @artist_2, @curator.find_artist_by_id("2")
   end
 
+  def test_it_can_find_photos_by_artist
+    @curator.add_artist(@artist_1)
+    @curator.add_artist(@artist_2)
+    @curator.add_artist(@artist_3)
+
+    @curator.add_photograph(@photo_1)
+    @curator.add_photograph(@photo_2)
+    @curator.add_photograph(@photo_3)
+    @curator.add_photograph(@photo_4)
+  end
+
 end
 
-# pry(main)> curator.find_artist_by_id("1")
-# # => #<Artist:0x00007fb3d8b4ed60...>
+
+
+
+
+# pry(main)> curator.add_artist(artist_1)
+#
+# pry(main)> curator.add_artist(artist_2)
+#
+# pry(main)> curator.add_artist(artist_3)
+#
+# pry(main)> curator.add_photograph(photo_1)
+#
+# pry(main)> curator.add_photograph(photo_2)
+#
+# pry(main)> curator.add_photograph(photo_3)
+#
+# pry(main)> curator.add_photograph(photo_4)
+#
+# pry(main)> curator.photographs_by_artist
+# # => {
+# #        #<Artist:0x00007fabc6a52340...> => [#<Photograph:0x00007fabc6933180...>],
+# #        #<Artist:0x00007fabc6c20870...> => [#<Photograph:0x00007fabc6c28e58...>],
+# #        #<Artist:0x00007fabc5ba0c70...> => [#<Photograph:0x00007fabc5bb9ef0...>, #<Photograph:0x00007fabc6b931f0...>]
+# #      }
+#
+# pry(main)> curator.artists_with_multiple_photographs
+# # => ["Diane Arbus"]
+#
+# pry(main)> curator.photographs_taken_by_artist_from("United States")
+# # => [#<Photograph:0x00007fabc6c28e58...>, #<Photograph:0x00007fabc5bb9ef0...>, #<Photograph:0x00007fabc6b931f0...>
+#
+# pry(main)> curator.photographs_taken_by_artist_from("Argentina")
+# # => []
