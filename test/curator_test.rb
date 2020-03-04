@@ -58,39 +58,16 @@ class CuratorTest < Minitest::Test
   end
 
   def test_it_can_add_artists
-
+    @curator.add_artist(@artist_1)
+    assert_equal [@artist_1], @curator.artists
+    @curator.add_artist(@artist_2)
+    assert_equal [@artist_1, @artist_2], @curator.artists
   end
 
 
 end
 
 
-
-
-
-
-
-# pry(main)> curator.artists
-# # => []
-#
-# pry(main)> artist_1 = Artist.new({
-#     id: "1",
-#     name: "Henri Cartier-Bresson",
-#     born: "1908",
-#     died: "2004",
-#     country: "France"
-# })
-# # => #<Artist:0x00007fb3d8b4ed60...>
-#
-# pry(main)> artist_2 = Artist.new({
-#     id: "2",
-#     name: "Ansel Adams",
-#     born: "1902",
-#     died: "1984",
-#     country: "United States"
-# })
-# # => #<Artist:0x00007fb3d90bb4b0...>
-#
 # pry(main)> curator.add_artist(artist_1)
 #
 # pry(main)> curator.add_artist(artist_2)
