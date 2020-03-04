@@ -13,15 +13,14 @@ class CuratorTest < Minitest::Test
   def test_it_exists
     assert_instance_of Curator, @curator
   end
+
+  def test_it_has_attributes
+    assert_equal [], @curator.photographs
+  end
 end
 
 
 
-
-
-# pry(main)> curator = Curator.new
-# # => #<Curator:0x00007fb3d9111cc0...>
-#
 # pry(main)> curator.photographs
 # # => []
 #
