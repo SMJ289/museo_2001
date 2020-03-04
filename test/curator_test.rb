@@ -103,28 +103,17 @@ class CuratorTest < Minitest::Test
     @curator.add_photograph(@photo_2)
     @curator.add_photograph(@photo_3)
     @curator.add_photograph(@photo_4)
+
+    expected = {
+      @artist_1 => [@photo_1],
+      @artist_2 => [@photo_2],
+      @artist_3 => [@photo_3, @photo_4]
+    }
+    assert_equal expected, @curator.photographs_by_artist
   end
 
 end
 
-
-
-
-
-# pry(main)> curator.add_artist(artist_1)
-#
-# pry(main)> curator.add_artist(artist_2)
-#
-# pry(main)> curator.add_artist(artist_3)
-#
-# pry(main)> curator.add_photograph(photo_1)
-#
-# pry(main)> curator.add_photograph(photo_2)
-#
-# pry(main)> curator.add_photograph(photo_3)
-#
-# pry(main)> curator.add_photograph(photo_4)
-#
 # pry(main)> curator.photographs_by_artist
 # # => {
 # #        #<Artist:0x00007fabc6a52340...> => [#<Photograph:0x00007fabc6933180...>],
