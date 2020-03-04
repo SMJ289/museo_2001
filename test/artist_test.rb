@@ -3,7 +3,7 @@ require 'minitest/pride'
 require './lib/photograph'
 require './lib/artist'
 
-class PhotographTest < Minitest::Test
+class ArtistTest < Minitest::Test
 
 end
 
