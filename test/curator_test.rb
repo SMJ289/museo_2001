@@ -64,16 +64,15 @@ class CuratorTest < Minitest::Test
     assert_equal [@artist_1, @artist_2], @curator.artists
   end
 
+  def test_it_can_find_artist_by_id
+    @curator.add_artist(@artist_1)
+    @curator.add_artist(@artist_2)
+
+    assert_equal @artist_1, @curator.find_artist_by_id("1")
+    assert_equal @artist_2, @curator.find_artist_by_id("2")
+  end
 
 end
 
-
-# pry(main)> curator.add_artist(artist_1)
-#
-# pry(main)> curator.add_artist(artist_2)
-#
-# pry(main)> curator.artists
-# # => [#<Artist:0x00007fb3d8b4ed60...>, #<Artist:0x00007fb3d90bb4b0...>]
-#
 # pry(main)> curator.find_artist_by_id("1")
 # # => #<Artist:0x00007fb3d8b4ed60...>
